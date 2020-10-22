@@ -1,0 +1,14 @@
+{% extends "ventureapp/base.html"%}
+{% block content%}
+<div class= "centerstage"</div>
+
+{% for post in posts_list%}
+<div class = "post">
+    {% comment %} when the user clicks on title it will be direct to the post_detail of the pk that matches the mapped pk in the loop {% endcomment %}
+    <h1><a href="{% url 'post_detail' pk=post.pk %}">{{post.location}}</a><h1>
+    <div class ="date">
+        <p> Published on: {{post.date}}</p>
+{% endfor %}
+
+{% endblock %}
+        

@@ -1,0 +1,15 @@
+{% extends "ventureapp/base.html"%}
+{% block content%}
+<div class= "centerstage"</div>
+    <h1>{{post.location}}</h1>
+    <h1>{{post.date}}</h1>
+    <h1>{{post.location}}</h1>
+    <h1>{{post.text}}</h1>
+
+    {% if user.is_authenticated %}
+        <a class="btn btn-primary" href="{% url 'ventureapp:post_edit' pk=post.pk %}">Edit<a>
+        <a class="btn btn-primary" href="{% url 'ventureapp:post_remove' pk=post.pk %}">Remove<a>
+    {% endif %}
+
+
+{% endblock %}

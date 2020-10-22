@@ -1,0 +1,10 @@
+{% extends "ventureapp/base.html"%}
+{% block content%}
+<form metod="POST">
+    {{% csrf_token %}}
+    <p>You sure {{object}}?</p>
+    <input type="submit" class='btn btn-danger' value="Confirm">
+
+
+{% endblock %}
+        
