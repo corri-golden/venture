@@ -3,3 +3,48 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+
+.listContainer {
+    display: flex;
+    margin: 0px;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+    position: relative;
+    text-align: center;
+    /* color: white; */
+}
+
+img {
+    height: 350px;
+    width: 525px;
+    margin: 10px
+}
+
+.listPost {
+    border: 2px solid gray;
+    width: 550px;
+}
+
+.subTitle {
+    margin: auto;
+}
+
+.upcoming {
+    /* justify-content: right; */
+    border: 2px solid gray;
+    border-radius: 10px;
+    margin-left: 200px
+}
+
+.upcomingImg {
+    height: 150px;
+    width: 150px;
+    margin: 10px
+}
+
+.completed {
+    border: 2px solid gray;
+    border-radius: 10px;
+}
+

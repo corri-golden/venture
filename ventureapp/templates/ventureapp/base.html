@@ -1,6 +1,7 @@
 
 <!DOCTYPE html>
 {% load static %}
+
 <html>
 
 <head>
@@ -14,7 +15,7 @@
    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
    <!--Custom CSS-->
-    <link rel="stylesheet" href="{% static 'css/blog.css' %}" /> 
+    <link rel="stylesheet" href="{% static 'static/blog.css' %}" /> 
 
     <!--Fonts-->
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200&family=Piazzolla:wght@200&display=swap" rel="stylesheet">
@@ -23,7 +24,7 @@
 
 </head>
 
-<body class="loader">
+<body>
     <!--Navbar-->
     <nav class="navbar navbar-default techfont custom-navbar">
     <div class="container">
@@ -53,13 +54,11 @@
     </nav>
 
     <!-- content-->
-    <div class="content container">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="blog_posts">
+    
                     {% block content%}
+                    
                     {% endblock%}
-                </div>
+                
 
 
     {% comment %} <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

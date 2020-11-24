@@ -1,10 +1,10 @@
 {% extends "ventureapp/base.html"%}
 {% block content%}
-    <h1>New Trip</h1>
+    <h1>Add Comment</h1>
     {% comment %} tell form its ok to accept images.  add enctype {% endcomment %}
-    <form class="post-form" method="POST" enctype="multipart/form-data">
+    <form class="post-form" method="POST">
         {% csrf_token %}
-        {{ form.media }}
+        {% comment %} to keep items in line {% endcomment %}
         {{form.as_p}}
         <button type="submit" class='save btn btn-default'>Add Comment</button>
 

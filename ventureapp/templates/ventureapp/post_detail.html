@@ -1,14 +1,63 @@
 {% extends "ventureapp/base.html"%}
 {% block content%}
-<div class= "centerstage"</div>
+<div class= "centerstage">
     <h1>{{post.location}}</h1>
-    <h1>{{post.date}}</h1>
-    <h1>{{post.location}}</h1>
-    <h1>{{post.text}}</h1>
+    <h2>{{post.date}}</h2>
+    <h2>{{post.text}}</h2>
+
+
 
     {% if user.is_authenticated %}
+        {% if post.post_image %}
+        <img src= "{{post.post_image.url}}">
+        {% endif %}
         <a class="btn btn-primary" href="{% url 'ventureapp:post_edit' pk=post.pk %}">Edit<a>
         <a class="btn btn-primary" href="{% url 'ventureapp:post_remove' pk=post.pk %}">Remove<a>
+    {% endif %}
+
+    {% comment %} <br/><br/>
+    <a href="{% url ventureapp:post_list %}" class="btn btn-secondary">Back</a> {% endcomment %}
+
+    <br/><br/>
+    <hr>
+    <br/>
+    {% comment %} post.pk is to know which blog post we are on | name is to keep track of the like | value is what allow's us to know which post is getting the like {% endcomment %}
+    <form action="{% url 'ventureapp:like_post' post.pk %}" method="POST">
+        {% csrf_token %}
+
+    {% if user.is_authenticated %}
+        {% if liked %}
+        <button type="submit", name="post_id" value
+        ="{{post.id}}", class="btn btn-danger
+         btn-sm">Unlike</button> 
+        {% else %}
+        <button type="submit", name="post_id" value
+        ="{{post.id}}", class="btn btn-primary
+         btn-sm">Like</button> 
+        {% endif %}
+    {% else %}
+    <small>Must be logged in to like</small>
+    {% endif %}
+         
+         
+         - {{ total_likes }}
+         Likes
+    </form>
+<br/><br/>
+<h2>Comments...</h2>
+<a href="{% url 'ventureapp:add_comment' post.pk%}">Add Comment</a>
+<br/><br/>
+    {% if not post.comments.all %}
+        No Comments Yet...<a href="{% url 'ventureapp:add_comment' post.pk%}">Add One</a>
+    {% else %}
+        {% for comment in post.comments.all %}
+            <strong>
+            {{comment.name}}-
+            {{comment.date_added}}
+            </strong>
+            <br/>
+            {{comment.body}}
+        {% endfor %}
     {% endif %}
 
 

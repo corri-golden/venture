@@ -1,14 +1,122 @@
 {% extends "ventureapp/base.html"%}
 {% block content%}
-<div class= "centerstage"</div>
+{% load static %}
+{% comment %} <div class= "centerstage"> {% endcomment %}
 
-{% for post in posts_list%}
-<div class = "post">
-    {% comment %} when the user clicks on title it will be direct to the post_detail of the pk that matches the mapped pk in the loop {% endcomment %}
-    <h1><a href="{% url 'post_detail' pk=post.pk %}">{{post.location}}</a><h1>
-    <div class ="date">
-        <p> Published on: {{post.date}}</p>
-{% endfor %}
+{% comment %} <div>
+    <h2 class="subTitle">Completed</h2>
+        <div class= "listContainer">
+            
+                        {% for post in posts%}
+                            {% if post.upcoming == False %}
+                                    <div class="upcoming">
+                                        <img src="{% static 'photos/everest.jpeg' %}" alt="My image">
+                                        <h1><a href="{% url 'ventureapp:post_detail' pk=post.pk %}">{{post.location}}</a><h1>
+                                        <p> Visited on: {{post.date}}</p>
+                                        <p> Upcoming: {{post.upcoming}}
+                                    </div>
+                            {% endif %}
+                        {% endfor %}
+            </div>
+
+       
+                    
+
+    <div>
+        <h2>Upcoming</h2>
+        <h2>Welcome to the Party</h2>
+            {% for post in posts %}
+                {% if post.upcoming == True %}
+                    <div class= "upcoming">
+                        <img src="{% static 'photos/everest.jpeg' %}" alt="My image">
+                        <h1><a href="{% url 'ventureapp:post_detail' pk=post.pk %}">{{post.location}}</a><h1>
+                    <div>
+                {% endif %}
+            {% endfor %}
+    </div> 
+</div>
+
+{% endblock %} {% endcomment %}
+
+
+
+
+
+<div class= "listContainer">
+    <div>
+        <h2>Completed</h2>    
+            {% for post in posts%}
+                {% if post.upcoming == False %}
+                    <div class="completed">
+                        
+                        {% comment %} <img src="{% static 'photos/everest.jpeg' %}" alt="My image"> {% endcomment %}
+                        
+                        {% if post.post_image %}
+                        <img src="{{post.post_image.url}}">
+                        {% endif %}
+                        <h1><a href="{% url 'ventureapp:post_detail' pk=post.pk %}">{{post.location}}</a><h1>
+                        <h6> Visited on: {{post.date}}</h6>
+                    </div>
+                {% endif %}
+            {% endfor %}
+    </div>
+
+       
+                    
+
+    <div>
+        <h2>Upcoming</h2>
+            {% for post in posts %}
+                {% if post.upcoming == True %}
+                    <div class= "upcoming">
+                        <img class="upcomingImg" src="{% static 'photos/everest.jpeg' %}" alt="My image">
+                        <p><a href="{% url 'ventureapp:post_detail' pk=post.pk %}">{{post.location}}</a></p>
+                        {% comment %} <img src="{{post.image.url}}"> {% endcomment %}
+                        <p> Plan to visit on: {{post.date}}</p>
+                    <div>
+                {% endif %}
+            {% endfor %}
+    </div> 
+</div>
 
 {% endblock %}
+
+
+    
+    
+    {% comment %} <div class="query-container">
+            <div>
+                <h2>Pending</h2>
+                    {% for query in all_queries %}
+                        {% if query.status.id == 1 %}
+                            <div class="card_pending"> 
+                                <a href="{% url 'queriesapp:query' query.id %}"> {{query.agent.agent_name}}<a></br>
+                                {{query.agent.email}}
+                                </br>
+                                Sent: {{query.sent}}</br>
+                                Deadline to Respond: {{query.expiration}}
+                                </br>
+                                <button><a href="{% url 'queriesapp:query' query.id %}" >Details</a></button>
+                            </div>          
+                        {% endif %}
+                    {% endfor %}
+            </div>
+        
+            <div>
+                <h2>FollowUp</h2>
+                    {% for query in all_queries %}
+                        {% if query.status.id == 2 %}
+                            <div class="card_followup"> 
+                                <a href="{% url 'queriesapp:query' query.id %}"> {{query.agent.agent_name}}<a></br>
+                                {{query.agent.email}}
+                                </br>
+                                Sent: {{query.sent}}</br>
+                                Deadline to Respond: {{query.expiration}}
+                                </br>
+                                <button><a href="{% url 'queriesapp:query' query.id %}" >Details</a></button>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+            </div>
+    </div> {% endcomment %}
         
